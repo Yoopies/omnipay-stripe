@@ -56,6 +56,27 @@ class CreateSubscriptionRequest extends AbstractRequest
         return $this->setParameter('tax_percent', $value);
     }
 
+    /**
+     * Get the the trial end timestamp
+     *
+     * @return string
+     */
+    public function getTrialEnd()
+    {
+        return $this->getParameter('trial_end');
+    }
+
+    /**
+     * Set the trial end timestamp.
+     *
+     * @param $value
+     * @return \Omnipay\Common\Message\AbstractRequest|CreateSubscriptionRequest
+     */
+    public function setTrialEnd($value)
+    {
+        return $this->setParameter('trial_end', $value);
+    }
+
     public function getData()
     {
         $this->validate('customerReference', 'plan');
@@ -70,6 +91,10 @@ class CreateSubscriptionRequest extends AbstractRequest
 
         if ($this->getMetadata()) {
             $data['metadata'] = $this->getMetadata();
+        }
+
+        if ($this->getTrialEnd()) {
+            $data['trial_end'] = $this->getTrialEnd();
         }
 
         return $data;

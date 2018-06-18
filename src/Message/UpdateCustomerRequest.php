@@ -66,6 +66,24 @@ class UpdateCustomerRequest extends AbstractRequest
     {
         return $this->getParameter('source');
     }
+
+    /**
+     * @return string
+     */
+    public function getDefaultSource()
+    {
+        return $this->getParameter('default_source');
+    }
+
+    /**
+     * @param $value
+     *
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
+    public function setDefaultSource($value)
+    {
+        return $this->setParameter('default_source', $value);
+    }
     
     /**
      * Sets the customer's source.
@@ -100,6 +118,10 @@ class UpdateCustomerRequest extends AbstractRequest
 
         if ($this->getSource()) {
             $data['source'] = $this->getSource();
+        }
+
+        if ($this->getDefaultSource()) {
+            $data['default_source'] = $this->getDefaultSource();
         }
 
         return $data;
